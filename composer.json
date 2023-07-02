@@ -1,0 +1,24 @@
+{
+    "name": "merkushin/sensei-reports-extension",
+    "description": "Sensei LMS Extension: Report Graphs",
+    "type": "library",
+    "require": {
+        "merkushin/wpal": "dev-main"
+    },
+    "require-dev": {
+        "humbug/php-scoper": "^0.17.5"
+    },
+    "license": "GPLv2",
+    "autoload": {
+        "psr-4": {
+            "Merkushin\\SenseiReportsExtension\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dmitry Merkushin",
+            "email": "merkushin@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
