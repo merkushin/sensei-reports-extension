@@ -109,7 +109,6 @@ class ExtensionTest extends TestCase {
 				true
 			);
 
-
 		// Act
 		$extension->enqueue_scripts();
 	}
@@ -130,8 +129,42 @@ class ExtensionTest extends TestCase {
 				$extension->get_chart_script()
 			);
 
-
 		// Act
 		$extension->enqueue_scripts();
 	}
+
+	public function testGetChartScript_Always_AppliesFilters(): void {
+		// Arrange
+		$_GET['start_date'] = '2020-01-01';
+		$_GET['end_date'] = '2020-01-02';
+		$hooks = $this->createMock(Hooks::class);
+		ServiceFactory::set_custom_hooks($hooks);
+
+		$extension = new Extension();
+
+		// Expect
+		$hooks
+			->expects( $this->exactly(2) )
+			->method( 'apply_filters' )
+			->willReturnMap(
+				[ 
+
+					[
+						'sensei_reports_extension_chart_labels',
+						['2020-01-01', '2020-01-02'],
+					],
+					[
+						'sensei_reports_extension_chart_datasets',
+						[],
+						['2020-01-01', '2020-01-02'],
+						'2020-01-01',
+						'2020-01-02'
+					],
+				],
+			);
+
+		// Act
+		$extension->get_chart_script();
+	}
+
 }
