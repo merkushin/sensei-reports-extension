@@ -2,7 +2,7 @@ all: prefix archive
 
 .PHONY: prefix
 prefix:
-	composer install
+	composer install --no-dev
 	vendor/bin/php-scoper add-prefix
 	cd build && composer dump-autoload
 
