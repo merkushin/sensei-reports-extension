@@ -27,6 +27,7 @@ return [
     // For more see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#finders-and-paths
     'finders' => [
         Finder::create()->files()->in('src'),
+		Finder::create()->files()->in('.')->name('sensei-reports-extension.php'),
         Finder::create()
             ->files()
             ->ignoreVCS(true)
@@ -43,14 +44,9 @@ return [
         Finder::create()->append([
             'composer.json',
         ]),
-    ],
 
-    // List of excluded files, i.e. files for which the content will be left untouched.
-    // Paths are relative to the configuration file unless if they are already absolute
-    //
-    // For more see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#patchers
+    ],
     'exclude-files' => [
-        'src/a-whitelisted-file.php',
     ],
 
     // When scoping PHP files, there will be scenarios where some of the code being scoped indirectly references the
@@ -62,14 +58,19 @@ return [
     'patchers' => [
         static function (string $filePath, string $prefix, string $contents): string {
             // Change the contents here.
+			$rootDir = dirname(__FILE__); 
+			if ($filePath === $rootDir . '/vendor/composer/autoload_real.php') {
+				return str_replace(
+					'Composer\\\Autoload\\\\ClassLoader',
+					$prefix . 'Composer\\Autoload\\ClassLoader',
+					$contents
+				);
+			}
 
             return $contents;
         },
     ],
 
-    // List of symbols to consider internal i.e. to leave untouched.
-    //
-    // For more information see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#excluded-symbols
     'exclude-namespaces' => [
         // 'Acme\Foo'                     // The Acme\Foo namespace (and sub-namespaces)
         // '~^PHPUnit\\\\Framework$~',    // The whole namespace PHPUnit\Framework (but not sub-namespaces)

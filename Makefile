@@ -4,6 +4,7 @@ all: prefix archive
 prefix:
 	composer install
 	vendor/bin/php-scoper add-prefix
+	cd build && composer dump-autoload
 
 .PHONY: archive
 archive:

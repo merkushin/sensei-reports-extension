@@ -3,7 +3,8 @@
     "description": "Sensei LMS Extension: Report Graphs",
     "type": "library",
     "require": {
-        "merkushin/wpal": "dev-main"
+        "merkushin/wpal": "dev-main",
+        "humbug/php-scoper": "^0.17.5"
     },
     "require-dev": {
         "humbug/php-scoper": "^0.17.5"
