@@ -1,0 +1,23 @@
+/* The course completions chart above Sensei's Students report. */
+.reports-graph-for-sensei-lms {
+	margin: 16px 0 24px;
+	padding: 16px 24px 24px;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.reports-graph-for-sensei-lms__title {
+	margin: 0 0 4px;
+}
+
+.reports-graph-for-sensei-lms__summary {
+	margin: 0;
+	color: #646970;
+}
+
+.reports-graph-for-sensei-lms__chart {
+	position: relative;
+	height: 280px;
+	margin-top: 16px;
+}

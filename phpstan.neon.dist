@@ -1,0 +1,14 @@
+# WordPress functions and classes come from szepeviktor/phpstan-wordpress,
+# loaded by phpstan/extension-installer.
+parameters:
+	level: 6
+	phpVersion: 70400
+	paths:
+		- reports-graph-for-sensei-lms.php
+		- uninstall.php
+		- src
+		- tests
+	excludePaths:
+		- tests/fixtures/*/assets/build/*
+		- tests/stubs/*
+		- tests/smoke/wpdb.php

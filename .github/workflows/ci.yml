@@ -1,0 +1,116 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint and static analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer:v2
+          coverage: none
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - run: composer install --no-interaction --no-progress
+      - run: npm ci
+
+      - name: Coding standards and PHP compatibility
+        run: make lint
+
+      - name: PHPStan
+        run: make phpstan
+
+      - name: Translation template is up to date
+        run: make i18n-check
+
+      - name: Versions match
+        run: make version-check
+
+  test:
+    name: Tests (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+
+      - run: composer install --no-interaction --no-progress
+
+      - run: make test
+
+  test-js:
+    name: JavaScript tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - run: npm ci
+
+      - run: make test-js
+
+  build:
+    name: Build, smoke test and Plugin Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer:v2
+          coverage: none
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - run: make dist
+
+      - name: Smoke test the build
+        run: make smoke
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: reports-graph-for-sensei-lms
+          path: build/reports-graph-for-sensei-lms
+          if-no-files-found: error
+
+      # The checks WordPress.org runs on submissions, against the built plugin.
+      - name: Plugin Check
+        uses: WordPress/plugin-check-action@v1
+        with:
+          build-dir: build/reports-graph-for-sensei-lms
+          slug: reports-graph-for-sensei-lms

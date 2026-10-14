@@ -1,0 +1,69 @@
+# Copyright (C) 2026 Dmitry Merkushin
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Reports Graph for Sensei LMS 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/reports-graph-for-sensei-lms\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-14T14:57:31+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: reports-graph-for-sensei-lms\n"
+
+#. Plugin Name of the plugin
+#: reports-graph-for-sensei-lms.php:3
+msgid "Reports Graph for Sensei LMS"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: reports-graph-for-sensei-lms.php:4
+msgid "https://github.com/merkushin/sensei-reports-extension"
+msgstr ""
+
+#. Description of the plugin
+#: reports-graph-for-sensei-lms.php:5
+msgid "Adds a chart of course completions over time to the Sensei LMS Students report."
+msgstr ""
+
+#. Author of the plugin
+#: reports-graph-for-sensei-lms.php:10
+msgid "Dmitry Merkushin"
+msgstr ""
+
+#: src/ChartPanel.php:113
+msgid "Course completions"
+msgstr ""
+
+#. translators: 1: first day of the report, 2: last day of the report.
+#: src/ChartPanel.php:131
+#, php-format
+msgid "No courses were completed from %1$s to %2$s."
+msgstr ""
+
+#. translators: 1: number of completed courses, 2: first day of the report, 3: last day of the report.
+#: src/ChartPanel.php:136
+#, php-format
+msgid "%1$s course completed from %2$s to %3$s."
+msgid_plural "%1$s courses completed from %2$s to %3$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: Date format for a day on the chart's axis, see https://www.php.net/manual/datetime.format.php
+#: src/CompletionsChart.php:49
+msgctxt "chart day label"
+msgid "M j"
+msgstr ""
+
+#. translators: Date format for a month on the chart's axis, see https://www.php.net/manual/datetime.format.php
+#: src/CompletionsChart.php:51
+msgctxt "chart month label"
+msgid "M Y"
+msgstr ""
+
+#: src/CompletionsChart.php:60
+msgid "Completed courses"
+msgstr ""

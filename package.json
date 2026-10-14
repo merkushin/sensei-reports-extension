@@ -1,0 +1,27 @@
+{
+	"name": "reports-graph-for-sensei-lms",
+	"version": "1.0.0",
+	"description": "Adds a chart of course completions over time to the Sensei LMS Students report.",
+	"private": true,
+	"license": "GPL-2.0-or-later",
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start",
+		"lint:js": "wp-scripts lint-js assets/src",
+		"lint:css": "wp-scripts lint-style \"assets/src/**/*.css\"",
+		"lint": "npm run lint:js && npm run lint:css",
+		"test": "wp-scripts test-unit-js --passWithNoTests"
+	},
+	"devDependencies": {
+		"@wordpress/dom-ready": "^4.57.0",
+		"@wordpress/scripts": "^36.1.0",
+		"vite": "^8.3.4",
+		"vitest": "^5.0.3"
+	},
+	"engines": {
+		"node": ">=22.22"
+	},
+	"dependencies": {
+		"chart.js": "^4.5.1"
+	}
+}

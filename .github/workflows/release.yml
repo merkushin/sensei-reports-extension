@@ -1,0 +1,67 @@
+name: Release
+
+# Push a tag matching the plugin version (v1.0.1 or 1.0.1) to publish it on WordPress.org and
+# attach the zip to a GitHub release. Needs the SVN_USERNAME and SVN_PASSWORD repository
+# secrets, and only works once WordPress.org has approved the plugin: see docs/FIRST-RELEASE.md.
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and deploy
+    # Tags in the template repository are template releases for Packagist, not plugin releases.
+    # The name is split so the setup script's placeholder replacement leaves this check alone.
+    if: github.repository != format('{0}/{1}{2}', 'merkushin', 'wp', 'plugin')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer:v2
+          coverage: none
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Versions match the tag
+        run: make version-check TAG=${{ github.ref_name }}
+
+      - name: Version without the v prefix
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - run: make dist
+
+      - name: Smoke test the build
+        run: make smoke
+
+      - name: Plugin Check
+        uses: WordPress/plugin-check-action@v1
+        with:
+          build-dir: build/reports-graph-for-sensei-lms
+          slug: reports-graph-for-sensei-lms
+
+      - name: Deploy to WordPress.org
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: reports-graph-for-sensei-lms
+          BUILD_DIR: build/reports-graph-for-sensei-lms
+          ASSETS_DIR: .wordpress-org
+          VERSION: ${{ steps.version.outputs.version }}
+
+      - name: GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ github.ref_name }}" reports-graph-for-sensei-lms.zip --title "${{ github.ref_name }}" --generate-notes
