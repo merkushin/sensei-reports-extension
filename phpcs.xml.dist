@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<ruleset name="Reports Graph for Sensei LMS">
+	<description>Coding standards for Reports Graph for Sensei LMS.</description>
+
+	<file>reports-graph-for-sensei-lms.php</file>
+	<file>uninstall.php</file>
+	<file>src</file>
+	<file>tests</file>
+
+	<exclude-pattern>tests/fixtures/*/assets/build/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<!-- Keep in sync with "Requires PHP" and "Requires at least" in the plugin header. -->
+	<config name="testVersion" value="7.4-"/>
+	<config name="minimum_wp_version" value="6.5"/>
+
+	<rule ref="WordPress-Extra"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="reports-graph-for-sensei-lms"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="reports_graph_for_sensei_lms_"/>
+				<element value="Merkushin\ReportsGraphForSensei"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Classes follow PSR-4 (src/Plugin.php), not WordPress' class-plugin.php naming. -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>*</exclude-pattern>
+	</rule>
+
+	<!-- The codebase uses short array syntax. -->
+	<rule ref="Universal.Arrays.DisallowShortArraySyntax">
+		<exclude-pattern>*</exclude-pattern>
+	</rule>
+
+	<!-- Tests don't run inside WordPress: PHPUnit naming, stand-ins for WordPress functions
+	     and plain file functions are fine there. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.Security.EscapeOutput">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<!-- The unit tests and the smoke test each have their own stand-in for wpdb. -->
+	<rule ref="Generic.Classes.DuplicateClassName">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+</ruleset>

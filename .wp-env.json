@@ -1,0 +1,11 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/wp-env.json",
+	"testsEnvironment": false,
+	"plugins": [
+		"https://downloads.wordpress.org/plugin/sensei-lms.zip",
+		"https://downloads.wordpress.org/plugin/plugin-check.latest-stable.zip"
+	],
+	"mappings": {
+		"wp-content/plugins/reports-graph-for-sensei-lms": "./build/reports-graph-for-sensei-lms"
+	}
+}

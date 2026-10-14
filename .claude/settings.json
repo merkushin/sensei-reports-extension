@@ -1,0 +1,24 @@
+{
+	"permissions": {
+		"allow": [
+			"Bash(make check)",
+			"Bash(make test)",
+			"Bash(make test-js)",
+			"Bash(make lint)",
+			"Bash(make lint-php)",
+			"Bash(make lint-js)",
+			"Bash(make phpstan)",
+			"Bash(make i18n)",
+			"Bash(make i18n-check)",
+			"Bash(make version-check)",
+			"Bash(make dist)",
+			"Bash(make smoke)",
+			"Bash(vendor/bin/phpunit *)",
+			"Bash(vendor/bin/phpcs *)",
+			"Bash(vendor/bin/phpcbf *)",
+			"Bash(npm run build)",
+			"Bash(npm run lint *)",
+			"Bash(npm test)"
+		]
+	}
+}
