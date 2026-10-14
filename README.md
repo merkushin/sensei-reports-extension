@@ -20,7 +20,7 @@ Adds a chart of course completions over time to the Sensei LMS Students report
 
 ## Development
 
-Requirements: PHP 7.4+, Composer, Node.js 22.22+, [WP-CLI](https://wp-cli.org/) for translations
+Requirements: PHP 7.4+, Composer, Node.js 22.22+
 and Docker for running Plugin Check locally.
 
 ```bash

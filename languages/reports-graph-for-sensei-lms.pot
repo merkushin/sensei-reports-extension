@@ -9,28 +9,28 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-14T14:07:33+00:00\n"
+"POT-Creation-Date: 2026-10-14T14:57:31+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: reports-graph-for-sensei-lms\n"
 
 #. Plugin Name of the plugin
-#: reports-graph-for-sensei-lms.php
+#: reports-graph-for-sensei-lms.php:3
 msgid "Reports Graph for Sensei LMS"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: reports-graph-for-sensei-lms.php
+#: reports-graph-for-sensei-lms.php:4
 msgid "https://github.com/merkushin/sensei-reports-extension"
 msgstr ""
 
 #. Description of the plugin
-#: reports-graph-for-sensei-lms.php
+#: reports-graph-for-sensei-lms.php:5
 msgid "Adds a chart of course completions over time to the Sensei LMS Students report."
 msgstr ""
 
 #. Author of the plugin
-#: reports-graph-for-sensei-lms.php
+#: reports-graph-for-sensei-lms.php:10
 msgid "Dmitry Merkushin"
 msgstr ""
 

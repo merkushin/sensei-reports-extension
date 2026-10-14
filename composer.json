@@ -21,6 +21,7 @@
 		"phpunit/phpunit": "^9.6",
 		"szepeviktor/phpstan-wordpress": "^2.0",
 		"veronalabs/wp-scoper": "^1.4",
+		"wp-cli/i18n-command": "^2.7",
 		"wp-coding-standards/wpcs": "^3.4"
 	},
 	"autoload": {

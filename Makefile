@@ -1,7 +1,7 @@
 PLUGIN    := reports-graph-for-sensei-lms
 BUILD_DIR := build/$(PLUGIN)
 ZIP       := $(PLUGIN).zip
-WP        ?= wp
+WP        ?= $(if $(wildcard vendor/bin/wp),vendor/bin/wp,wp)
 
 POT_ARGS := --slug=$(PLUGIN) --domain=$(PLUGIN) --include=$(PLUGIN).php,uninstall.php,src,assets/src \
 	--exclude=build,vendor,node_modules,tests,assets/build
